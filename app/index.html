@@ -2,59 +2,166 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Lab1</title>
+    <title>Lab1</title> 
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <style>
-        .headcontainer {
-            font-size: medium;
-            margin-top: 0;
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            background-color: #555755;
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: cursive;
         }
-        .ltext, .ctext, .rtext {
-            align-self: center;
-            font-size: large;
+        table {
+            width: 100%;
+            height: 100vh;
+            border-collapse: collapse;
+            table-layout: fixed;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        .buttontable {
+            border: 0px;
+            border-collapse: collapse;
+            width: 100%;
+            height: 50%;
+        }
+
+        .headcontainer {
+            background-color: #555755;
             color: #edf0ee;
+            font-size: large;
+        }
+        .headcontainer td {
+            vertical-align: middle;
+            width: 25%;
+            height: 10%;
         }
         .ltext {
-            justify-self: left;
+            text-align: left;
             margin-left: 10px;
         }
         .ctext {
-            justify-self: center;
+            text-align: center;
         }
         .rtext {
-            justify-self: right;
+            text-align: right;
             margin-right: 10px;
         }
-        body{
-            margin: 0px;
-            padding: 0px;
-            display: grid;
-            grid-template-rows: 1fr 100fr 1fr;
-            height: 100vh;
+        .contentcontainer {
+            height: auto;
+            text-align: center;
+            vertical-align: middle;
         }
-        .bottomcontainer {
-            align-self: center;
-            justify-self: center;
+        .bottomcontainer td {
+            height: 10%;
+            text-align: center;
+            font-size: large;
+            vertical-align: bottom;
         }
-        * {
-            font-family: monospace;
+        a {
+            color: blue;
+            text-decoration: none;
+        }
+        .buttontable tr {
+            height: 5%;
+        }
+
+        .buttontable {
+            min-width: 75%;
+            width: auto;
+            margin: 0 auto;
+            vertical-align: middle;
+            text-align: center;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+
+        #changeyrow, #changerrow {
+            height: 10%;
+            width: 10%;
+        }
+
+        .buttontable tr:first-child td:first-child {
+            border-top-left-radius: 25px;
+        }
+
+        .buttontable tr:first-child td:last-child {
+            border-top-right-radius: 25px;
+        }
+
+        .buttontable tr:last-child td:first-child {
+            border-bottom-left-radius: 25px;
+        }
+
+        .buttontable tr:last-child td:last-child {
+            border-bottom-right-radius: 25px;
         }
     </style>
 </head>
 <body>
-    <div class="headcontainer">
-       <div class="ltext">Стариков Арсений Дмитриевич</div>
-       <div class="ctext">Лабораторная работа 1</div>
-       <div class="rtext">Группа: P3213<br>Вариант: 467579</div>
-    </div>
-    <div class="contentconteiner">
-        bruuuuuuuuuuuuuuuuuuuuuuuuuuu
-    </div>
-    <div class="bottomcontainer">
-        <p>Все права защищены. Используя этот сайт вы соглашайтесь с его <a href="rules.html">правилами</a>.</p>
-    </div>
+    <table class="maintable">
+        <tr class="headcontainer">
+            <td class="ltext">Стариков Арсений Дмитриевич</td>
+            <td class="ctext">Лабораторная работа 1</td>
+            <td class="rtext">Группа: P3213<br>Вариант: 467579</td>
+        </tr>
+
+        <tr></tr>
+        <tr class="contentcontainer">
+            <td>
+                <table class="buttontable">
+                    <!--Изменение X-->
+                    <tr>
+                        <td colspan="2">
+                        Изменение X:
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                        <input type="button" name="-5" value="-5">
+                        <input type="button" name="-4" value="-4">
+                        <input type="button" name="-3" value="-3">
+                        <input type="button" name="-2" value="-2"> <br>
+                        <input type="button" name="-1" value="-1"> 
+                        <input type="button" name="0" value="0"> 
+                        <input type="button" name="1" value="1"> 
+                        <input type="button" name="2" value="2">
+                        <input type="button" name="3" value="3"> 
+                        </td>
+                    </tr>
+                    <!--Изменение Y-->
+                    <tr id="changeyrow">
+                        <td>Изменение Y</td>
+                        <td><input type="text" placeholder="Введите число от -5 до 3"></td>
+                    </tr>
+                    <!--Изменение R-->
+                    <tr id="changerrow">
+                        <td>Изменение R</td>
+                        <td><input type="text" placeholder="Введите число от 1 до 4"></td>
+                    </td>
+                    </tr>
+                    <!--Submit-->
+                    <tr>
+                        <td colspan="2">
+                            <input type="submit" value="Отправить данные"> 
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td>bruuuuuuuuuuuuuuuuuuuuuuuuuuu</td>
+            <td>bruuuuuuuuuuuuuuuuuuuuuuuuuuu</td>
+        </tr>
+        <tr></tr>
+
+        <tr class="bottomcontainer">
+            <td colspan="3">
+                Все права защищены. Используя этот сайт вы соглашайтесь с его 
+                <a href="rules.html">правилами</a>.
+            </td>
+        </tr>
+    </table>
 </body>
 </html>

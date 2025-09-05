@@ -41,14 +41,14 @@
         }
         .ltext {
             text-align: left;
-            margin-left: 10px;
+            padding-left: 10px;
         }
         .ctext {
             text-align: center;
         }
         .rtext {
             text-align: right;
-            margin-right: 10px;
+            padding-right: 10px;
         }
         .contentcontainer {
             height: auto;
@@ -99,6 +99,26 @@
         .buttontable tr:last-child td:last-child {
             border-bottom-right-radius: 25px;
         }
+
+        #coordinateSystem {
+            border: #555755 solid 1px;
+            border-radius: 25px;
+        }
+
+        #resulttable {
+            min-width: 75%;
+            width: auto;
+            margin: 0 auto;
+            vertical-align: middle;
+            text-align: center;
+            border-collapse: separate;
+            border-spacing: 0;
+            height: auto;
+        }
+
+        #resulttable tr {
+            height: 5%;
+        }
     </style>
 </head>
 <body>
@@ -110,13 +130,15 @@
         </tr>
 
         <tr></tr>
+
+        <!--Контейнер для данных-->
         <tr class="contentcontainer">
             <td>
                 <table class="buttontable">
                     <!--Изменение X-->
                     <tr>
                         <td colspan="2">
-                        Изменение X:
+                        Изменение X
                         </td>
                     </tr>
                     <tr>
@@ -151,8 +173,21 @@
                     </tr>
                 </table>
             </td>
-            <td>bruuuuuuuuuuuuuuuuuuuuuuuuuuu</td>
-            <td>bruuuuuuuuuuuuuuuuuuuuuuuuuuu</td>
+            <!--Система координат-->
+            <td>
+                <canvas id="coordinateSystem" width="400" height="400"></canvas>
+                <script src ="js/graph.js"></script>
+            </td>
+            <td>
+                <table id="resulttable">
+                    <tr>
+                        <td>Время попадания</td>
+                        <td>Данные попадания</td>
+                        <td>Результат</td>
+                        <td>Время отправки запроса</td>
+                    </tr>
+                </table>
+            </td>
         </tr>
         <tr></tr>
 

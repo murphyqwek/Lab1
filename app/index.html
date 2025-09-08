@@ -5,6 +5,7 @@
     <title>Lab1</title> 
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <script src="js/data.js"></script>
+    <script type="module" src="js/main.js"></script>
     <style>
         body {
             margin: 0;
@@ -120,6 +121,19 @@
         #resulttable tr {
             height: 5%;
         }
+
+        #coordinatetr {
+            height: 95%;
+        }
+
+        #logtr {
+            height: 5%;
+        }
+
+        #logContainer {
+            font-size: large;
+            font-family: cursive;
+        }
     </style>
 </head>
 <body>
@@ -144,40 +158,54 @@
                     </tr>
                     <tr>
                         <td colspan="2">
-                        <input type="button" name="-5" value="-5" onclick="getCurrentX(this.value)">
-                        <input type="button" name="-4" value="-4" onclick="getCurrentX(this.value)">
-                        <input type="button" name="-3" value="-3" onclick="getCurrentX(this.value)">
-                        <input type="button" name="-2" value="-2" onclick="getCurrentX(this.value)"> <br>
-                        <input type="button" name="-1" value="-1" onclick="getCurrentX(this.value)"> 
-                        <input type="button" name="0" value="0" onclick="getCurrentX(this.value)"> 
-                        <input type="button" name="1" value="1" onclick="getCurrentX(this.value)"> 
-                        <input type="button" name="2" value="2" onclick="getCurrentX(this.value)">
-                        <input type="button" name="3" value="3" onclick="getCurrentX(this.value)"> 
+                        <input type="button" name="-5" value="-5" id="-5">
+                        <input type="button" name="-4" value="-4">
+                        <input type="button" name="-3" value="-3">
+                        <input type="button" name="-2" value="-2"> <br>
+                        <input type="button" name="-1" value="-1"> 
+                        <input type="button" name="0" value="0"> 
+                        <input type="button" name="1" value="1"> 
+                        <input type="button" name="2" value="2">
+                        <input type="button" name="3" value="3"> 
                         </td>
                     </tr>
                     <!--Изменение Y-->
                     <tr id="changeyrow">
                         <td>Изменение Y</td>
-                        <td><input id="yinput" type="text" placeholder="Введите число от -5 до 3" onchange="updateY()"></td>
+                        <td><input id="yinput" type="text" placeholder="Введите число от -5 до 3"></td>
                     </tr>
                     <!--Изменение R-->
                     <tr id="changerrow">
                         <td>Изменение R</td>
-                        <td><input type="text" placeholder="Введите число от 1 до 4"></td>
+                        <td><input id="rinput" type="text" placeholder="Введите число от 1 до 4"></td>
                     </td>
                     </tr>
                     <!--Submit-->
                     <tr>
                         <td colspan="2">
-                            <input type="submit" value="Отправить данные"> 
+                            <button id="submit-data" type="button">
+                                Отправить данные
+                            </button> 
                         </td>
                     </tr>
                 </table>
             </td>
             <!--Система координат-->
             <td>
-                <canvas id="coordinateSystem" width="400" height="400"></canvas>
-                <script src ="js/graph.js"></script>
+                <table id="graphandlogtable">
+                    <tr id="coordinatetr">
+                        <td>
+                            <canvas id="coordinateSystem" width="400" height="400"></canvas>
+                            <script src="js/graph.js"></script>
+                        </td>
+                    </tr>
+                    <tr id="logtr">
+                        <td>
+                            <pre id="logContainer" class="log-area"></pre>
+                        </td>
+                    </tr>
+                     
+                </table>
             </td>
             <td>
                 <table id="resulttable">

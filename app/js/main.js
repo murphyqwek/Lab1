@@ -1,6 +1,5 @@
 import './data.js'
 
-
 var buttonXValue = "-5"
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -11,6 +10,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 const buttonContainer = document.querySelector('.buttontable');
 buttonContainer.addEventListener('click', function(event) {
+    if (event.target.id === 'submit-data') {
+        return;
+    }
     if (event.target.type === 'button') {
         document.querySelectorAll('.buttontable input[type="button"]').forEach(btn => {
             btn.style.backgroundColor = '';
@@ -32,20 +34,17 @@ document.getElementById("submit-data").addEventListener("click", function(event)
         return;
     }
 
-    fetch(`http://localhost:8080/fcgi-bin/server.jar`, {
-            method: 'POST',
-            body: `${coords.x}, ${coords.y}, ${coords.r}`,
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`${response.status}`);
-                }
-                return response.text();
-            })
-            .then(function (answer) {
-                alert(answer)    
-            })
-
+    $("#logContainer").text("")
+    $.post("http://localhost:8080/fcgi-bin/server.jar", `${coords.x},${coords.y},${coords.r}`).done(function(data) {
+        if(data.error_message === "") {
+            $("#resulttable").append(`<tr><td>${data.x}</td> <td>${data.y}</td> <td>${data.r}</td> <td>${data.result}</td> <td>${data.time}</td></tr>`);
+        }
+        else {
+            $("#logContainer").text(data.error_message)
+        }
+    }).fail(function() {
+        $("#logContainer").text("Не удалось получить ответ от сервера")
+    });
 });
 
 function getCoords() {

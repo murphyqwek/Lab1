@@ -1,0 +1,3 @@
+ssh -p 2222 -L 8080:localhost:2720 s467579@se.ifmo.ru
+httpd -f ~/httpd-root/conf/httpd-conf.conf -k start
+java -DFCGI_PORT=2721 -jar server.jar

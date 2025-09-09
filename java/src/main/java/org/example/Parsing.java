@@ -2,28 +2,28 @@ package org.example;
 
 public class Parsing {
     public static RequestData parseRequestBody(String body) throws BodyParsingException {
-        String[] elements = body.split("\n");
+        String[] elements = body.split(",");
 
         if (elements.length != 3) {
             throw new BodyParsingException("Сообщение пришло в неврерном формате");
         }
         float x, y, r;
         try {
-            x = Float.parseFloat(elements[0]);
+            x = Float.parseFloat(elements[0].replace(',', '.'));
         }
         catch (NumberFormatException e) {
             throw new BodyParsingException("Параметр X должен был действительным числом");
         }
 
         try {
-            y = Float.parseFloat(elements[1]);
+            y = Float.parseFloat(elements[1].replace(',', '.'));
         }
         catch (NumberFormatException e) {
             throw new BodyParsingException("Параметр Y должен был действительным числом");
         }
 
         try {
-            r = Float.parseFloat(elements[2]);
+            r = Float.parseFloat(elements[2].replace(',', '.'));
         }
 
         catch (NumberFormatException e) {

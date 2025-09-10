@@ -37,7 +37,7 @@ document.getElementById("submit-data").addEventListener("click", function(event)
     $("#logContainer").text("")
     $.post("http://localhost:8080/fcgi-bin/server.jar", `${coords.x},${coords.y},${coords.r}`).done(function(data) {
         if(data.error_message === "") {
-            $("#resulttable").append(`<tr><td>${data.x}</td> <td>${data.y}</td> <td>${data.r}</td> <td>${data.result}</td> <td>${data.time}</td></tr>`);
+            $("#resulttable").append(`<tr><td>${data.x}</td> <td>${data.y}</td> <td>${data.r}</td> <td>${data.result}</td> <td>${data.time}</td> <td>${data.current_time}</td></tr>`);
         }
         else {
             $("#logContainer").text(data.error_message)

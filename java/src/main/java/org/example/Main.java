@@ -6,11 +6,15 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Objects;
 import java.util.Timer;
 
+import com.sun.jdi.connect.IllegalConnectorArgumentsException;
 import org.example.Parsing;
 
 public class Main {
@@ -27,12 +31,16 @@ public class Main {
                     body = readRequestBody();
                     var data = Parsing.parseRequestBody(body);
                     long endTime = System.nanoTime();
-                    long duration = (endTime - startTime) / 1_000_000;
+                    long duration = (endTime - startTime);
+
+                    var currentDateTime = LocalDateTime.now();
+                    String currentDateTimeText = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").format(currentDateTime);;
+
                     if(Checker.isHit(data)) {
-                        System.out.println(response(data.x(), data.y(), data.r(), "Попадание", duration));
+                        System.out.println(response(data.x(), data.y(), data.r(), "Попадание", duration, currentDateTimeText));
                     }
                     else {
-                        System.out.println(response(data.x(), data.y(), data.r(), "Мимо", duration));
+                        System.out.println(response(data.x(), data.y(), data.r(), "Мимо", duration, currentDateTimeText));
                     }
 
                 } catch (IOException e) {
@@ -80,10 +88,10 @@ public class Main {
                 """.formatted(content.getBytes(StandardCharsets.UTF_8).length, content);
     }
 
-    private static String response(float x, float y, float r, String result, long time) {
+    private static String response(float x, float y, float r, String result, long time, String current_time) {
         String content = """
-                {"x":"%.3f", "y":"%.3f", "r":"%.3f", "result":"%s", "time":"%d", "error_message":""}
-                """.formatted(x, y, r, result, time);
+                {"x":"%.3f", "y":"%.3f", "r":"%.3f", "result":"%s", "time":"%d", "error_message":"", "current_time":"%s"}
+                """.formatted(x, y, r, result, time, current_time);
         return """
                 Content-Type: application/json; charset=utf-8
                 Content-Length: %d

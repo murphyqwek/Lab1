@@ -35,8 +35,13 @@ document.getElementById("submit-data").addEventListener("click", function(event)
     }
 
     $("#logContainer").text("")
-    $.post("http://localhost:8080/fcgi-bin/server.jar", `${coords.x},${coords.y},${coords.r}`).done(function(data) {
+    $.post({
+        url: "/fcgi-bin/server.jar",
+        data: `${coords.x},${coords.y},${coords.r}`,
+        contentType: 'text/plain'
+    }).done(function(data) {
         if(data.error_message === "") {
+            saveToLocalStorage(data);
             $("#resulttable").append(`<tr><td>${data.x}</td> <td>${data.y}</td> <td>${data.r}</td> <td>${data.result}</td> <td>${data.time}</td> <td>${data.current_time}</td></tr>`);
         }
         else {
@@ -89,13 +94,10 @@ function updateLogText(text) {
     logContainer.textContent  = text;
 }
 
-
-
-
-
-
-
-
-
-
-
+function saveToLocalStorage(data) {
+    let storedData = JSON.parse(localStorage.getItem('resultData') || '[]');
+    
+    storedData.push(data);
+    
+    localStorage.setItem('resultData', JSON.stringify(storedData));
+}

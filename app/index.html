@@ -7,6 +7,7 @@
     <script src="js/data.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script type="module" src="js/main.js"></script>
+    <script type="module" src="js/localstorage.js"></script>
     <style>
         body {
             margin: 0;
@@ -20,16 +21,16 @@
             table-layout: fixed;
         }
 
-        table, th, td {
-            border: 1px solid black;
-            border-collapse: collapse;
-        }
-
         .buttontable {
-            border: 0px;
+            border: 1px solid black;
             border-collapse: collapse;
             width: 100%;
             height: 50%;
+        }
+
+        .buttontable td, .buttontable td{
+            border: 1px solid black;
+            border-collapse: collapse;
         }
 
         .headcontainer {
@@ -87,22 +88,6 @@
             width: 10%;
         }
 
-        .buttontable tr:first-child td:first-child {
-            border-top-left-radius: 25px;
-        }
-
-        .buttontable tr:first-child td:last-child {
-            border-top-right-radius: 25px;
-        }
-
-        .buttontable tr:last-child td:first-child {
-            border-bottom-left-radius: 25px;
-        }
-
-        .buttontable tr:last-child td:last-child {
-            border-bottom-right-radius: 25px;
-        }
-
         #coordinateSystem {
             border: #555755 solid 1px;
             border-radius: 25px;
@@ -121,6 +106,13 @@
 
         #resulttable tr {
             height: 5%;
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        #resulttable td {
+            border: 1px solid black;
+            border-collapse: collapse;
         }
 
         #coordinatetr {
@@ -136,10 +128,9 @@
             font-family: cursive;
         }
 
-        input[type="button"]:hover, #submit-data:hover {
-            background-color: #1ed91e;
+        input[type="button"]:hover, button[type="button"]:hover {
+            background-color: #3cc70e;
             color: #edf0ee;
-            cursor: pointer;
         }
     </style>
 </head>
@@ -221,7 +212,7 @@
                         <td>Y</td>
                         <td>R</td>
                         <td>Результат</td>
-                        <td>Время обработки запроса, нс</td>
+                        <td>Время работы скрипты, нс</td>
                         <td>Текущее время</td>
                     </tr>
                 </table>
